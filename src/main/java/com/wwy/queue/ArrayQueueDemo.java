@@ -3,6 +3,10 @@ package com.wwy.queue;
 import java.util.Scanner;
 
 public class ArrayQueueDemo {
+    /**
+     * 队列
+     * @param args
+     */
     public static void main(String[] args) {
         Queue queue = new Queue(3);
         boolean flag = true;

@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class CircleArrarQueueDemo {
     public static void main(String[] args) {
+        /**
+         * 环形队列
+         */
         Queue queue = new Queue(3);
         boolean flag = true;
         Scanner sc = new Scanner(System.in);
@@ -96,8 +99,8 @@ public class CircleArrarQueueDemo {
                 System.out.println("队列为空");
                 return;
             }
-            for (int i = front; i <front+size() ; i++) {
-                System.out.println("arr["+(i)%maxSize+"]="+arr[(i)%maxSize]);
+            for (int i = front; i < front + size(); i++) {
+                System.out.println("arr[" + (i) % maxSize + "]=" + arr[(i) % maxSize]);
             }
         }
 
