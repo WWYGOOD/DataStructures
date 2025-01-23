@@ -2,24 +2,29 @@ package com.wwy.stack;
 
 public class LinkedListStack {
     public static void main(String[] args) {
-        ArrayStackDemo.ArrayStack arrayStack = new ArrayStackDemo.ArrayStack(4);
+       ArrayStack arrayStack = new ArrayStack(4);
         arrayStack.push(1);
         arrayStack.push(2);
         arrayStack.push(3);
         arrayStack.push(4);
+
 //        System.out.println(arrayStack.pop());
 //        System.out.println(arrayStack.pop());
 //        System.out.println(arrayStack.pop());
 //        System.out.println(arrayStack.pop());
-//        arrayStack.list();
+        arrayStack.list();
     }
 
     public static class ArrayStack {
         //        int[] stack = null;
         int maxSize = 0;//栈的大小
-        int top;//栈顶
+        int top=-1;//栈顶
         Node head = new Node(0);
 
+
+        public ArrayStack(int maxSize) {
+            this.maxSize = maxSize;
+        }
 
         /**
          * 判断栈是否为满
@@ -50,11 +55,11 @@ public class LinkedListStack {
             }
             Node temp = head;
             Node node = new Node(value);
-            if (head.next == null) {
-                head.next = node;
+            if (temp.next == null) {
+                temp.next = node;
             } else {
-                node.next = head.next;
-                head.next = node;
+                node.next = temp.next;
+                temp.next = node;
             }
             top++;
         }
@@ -95,5 +100,14 @@ public class LinkedListStack {
         public Node(int id) {
             this.id = id;
         }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "id=" + id +
+                    '}';
+        }
     }
+
+
 }
