@@ -15,7 +15,7 @@
 
 ## 稀疏数组和队列
 
-### 稀疏数组---SparseArray
+### 1.稀疏数组---SparseArray
 
 **背景：**
 
@@ -121,7 +121,7 @@ public class SparseArray {
 }
 ~~~
 
-### 队列---ArrayQueue
+### 2.队列---ArrayQueue
 
 **介绍**：
 
@@ -392,7 +392,7 @@ public class CircleArrarQueueDemo {
 
 ## 链表---LinkedList
 
-### 单向链表---LinkedList
+### 1.单向链表---LinkedList
 
 链表是有序的列表
 
@@ -723,11 +723,11 @@ public class CircleArrarQueueDemo {
    }
    ~~~
 
-### 双向链表---DoubleLinkedList
+### 2.双向链表---DoubleLinkedList
 
 - 单向链表的缺点分析：
-  - 单向链表查找只能是一个方向，而双向链表可以向前或者向后查找
-  - 单向链表不能实现自我删除，需要依靠辅助节点，而双向链表可以自我删除
+    - 单向链表查找只能是一个方向，而双向链表可以向前或者向后查找
+    - 单向链表不能实现自我删除，需要依靠辅助节点，而双向链表可以自我删除
 
 
 ![image-20250122201257254](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250122201257254.png)
@@ -893,7 +893,7 @@ public class DoubleLinkedListDemo {
 
 ~~~
 
-### 循环链表---CricleLinkedList
+### 3.循环链表---CricleLinkedList
 
 **应用案例 **：约瑟夫问题
 
@@ -1278,12 +1278,12 @@ public class LinkedListStack {
 2. 从左至右扫描中缀表达式;
 3. 遇到操作数时，将其压s2;
 4. 遇到运算符时，比较其与s1栈顶运算符的优先级:
-   1. 如果s1为空，或栈顶运算符为左括号“”，则直接将此运算符入栈;
-   2. 否则，若优先级比核顶运算符的高，也将运算符压入s1;
-   3. 否则，将s1栈顶的运算符弹出并压入到s2中，再次转到(4.1)与s1中新的栈顶运算符相比较;
+    1. 如果s1为空，或栈顶运算符为左括号“”，则直接将此运算符入栈;
+    2. 否则，若优先级比核顶运算符的高，也将运算符压入s1;
+    3. 否则，将s1栈顶的运算符弹出并压入到s2中，再次转到(4.1)与s1中新的栈顶运算符相比较;
 5. 遇到括号时:
-   1. 如果是左括号“(”，则直接压入s1
-   2. 如果是右括号“)"，则依次弹出s1栈顶的运算符，并压入s2，直到遇到左括号为止，此时将这一对括号丢弃
+    1. 如果是左括号“(”，则直接压入s1
+    2. 如果是右括号“)"，则依次弹出s1栈顶的运算符，并压入s2，直到遇到左括号为止，此时将这一对括号丢弃
 6. 重复步骤2至5，直到表达式的最右边
 7. 将s1中剩余的运算符依次弹出并压入s2
 8. 将s1中剩余的运算符依次弹出并压入s2
@@ -1472,7 +1472,7 @@ public class PolandNotation {
 
 ### 2.递归的应用
 
-#### **范围内打印和n的阶乘**
+#### 2.1**范围内打印和n的阶乘**
 
 **代码实现**
 
@@ -1506,7 +1506,7 @@ factirial(4);
 }
 ~~~
 
-#### 迷宫问题
+#### 2.2迷宫问题
 
 利用递归和回溯实现迷宫寻找出口
 
@@ -1587,7 +1587,7 @@ public class MiGong {
 
 ~~~
 
-#### 八皇后问题
+#### 2.3八皇后问题
 
 在8*8的棋盘上摆放八个皇后，使其不能相互攻击，任意两个皇后不能处于同一行，同一列或者同一斜线上，问有多少种摆法（92）
 
@@ -1674,4 +1674,725 @@ public class Queue8 {
     }
 }
 ```
+
+## 排序算法---SortAlgorithm
+
+### 1.排序算法的介绍
+
+​	排序也称排序算法，排序是将一组数据，依照指定的顺序进行排列的过程
+
+### 2.排序的分类
+
+- 内部排序
+    - 指将需要处理的所有数据都加载到内部存储器(内存)中进行排序
+- 外部排序
+    - 数据量过大，无法全部加载到内存中，需要借助外部存储器(外存)进行排序
+
+**常见的排序算法如下：**
+
+**1. 基于比较的排序算法**
+
+这些算法通过比较元素的大小来决定它们的顺序。
+
+**1.1 简单排序算法**
+
+- **冒泡排序（Bubble Sort）**
+    - 时间复杂度：O(n²)
+    - 空间复杂度：O(1)
+    - 特点：简单但效率低，适合教学用途。
+- **选择排序（Selection Sort）**
+    - 时间复杂度：O(n²)
+    - 空间复杂度：O(1)
+    - 特点：每次选择最小元素放到前面，不稳定。
+- **插入排序（Insertion Sort）**
+    - 时间复杂度：O(n²)
+    - 空间复杂度：O(1)
+    - 特点：对小规模数据或基本有序的数据效率高。
+
+**1.2 高效排序算法**
+
+- **快速排序（Quick Sort）**
+    - 时间复杂度：平均 O(n log n)，最坏 O(n²)
+    - 空间复杂度：O(log n)（递归栈）
+    - 特点：分治法，性能优秀，但不稳定。
+- **归并排序（Merge Sort）**
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+    - 特点：分治法，稳定，适合外部排序。
+- **堆排序（Heap Sort）**
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(1)
+    - 特点：利用堆数据结构，不稳定。
+- **希尔排序（Shell Sort）**
+    - 时间复杂度：O(n log² n)（取决于间隔序列）
+    - 空间复杂度：O(1)
+    - 特点：插入排序的改进版，不稳定。
+
+------
+
+**2. 非基于比较的排序算法**
+
+这些算法不通过比较元素的大小来决定顺序，而是利用数据的特定属性（如整数范围）。
+
+**2.1 线性时间复杂度排序**
+
+- **计数排序（Counting Sort）**
+    - 时间复杂度：O(n + k)（k 是数据范围）
+    - 空间复杂度：O(k)
+    - 特点：适合数据范围较小的整数排序。
+- **基数排序（Radix Sort）**
+    - 时间复杂度：O(n * k)（k 是数字位数）
+    - 空间复杂度：O(n + k)
+    - 特点：适合整数或字符串排序。
+- **桶排序（Bucket Sort）**
+    - 时间复杂度：O(n + k)（k 是桶的数量）
+    - 空间复杂度：O(n + k)
+    - 特点：适合数据分布均匀的场景。
+
+------
+
+**3. 其他排序算法**
+
+- **TimSort**
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(n)
+    - 特点：结合了归并排序和插入排序，Python 和 Java 的内置排序算法。
+- **梳排序（Comb Sort）**
+    - 时间复杂度：O(n log n)
+    - 空间复杂度：O(1)
+    - 特点：冒泡排序的改进版，通过动态间隔减少比较次数。
+- **鸽巢排序（Pigeonhole Sort）**
+    - 时间复杂度：O(n + k)（k 是数据范围）
+    - 空间复杂度：O(k)
+    - 特点：适合数据范围较小且密集的场景。
+- **BogoSort**
+    - 时间复杂度：平均 O(n * n!)，最坏无限
+    - 空间复杂度：O(1)
+    - 特点：随机排序，效率极低，仅用于教学或娱乐。
+
+### 3.算法的时间复杂度
+
+#### 3.1度量一个程序执行时间的两种方法
+
+1. **事后统计的方法**
+
+   这种方法可行,但是有两个问题:一是要想对设计的算法的运行性能进行评测，需要实际运行该程序;二是所得时间的统计量依赖于计算机的硬件、软件等环境因素,这种方式，要在同一台计算机的相同状态下运行，才能比较那个算法速度更快。
+
+2. **事前估算的方法**
+
+   通过分析某个算法的时间复杂度来判断哪个算法更优
+
+#### 3.2时间频度
+
+**基本介绍：**
+
+时间频度:一个算法花费的时间与算法中语句的执行次数成正比例，哪个算法中语句执行次数多，它花费时间就多。**一个算法中的语句执行次数称为语句频度或时间频度**。记为T(n)。
+
+![image-20250123181222181](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250123181222181.png)
+
+举例说明：忽略常数项
+
+![image-20250123181332629](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250123181332629.png)
+
+>- 结论:
+   >  - 2n+20 和 2n 随着n变大，执行曲线无限接近,20 可以忽略
+>  - 3n+10 和 3n 随着n变大，执行曲线无限接近,10 可以忽略
+
+举例说明：忽略低次项
+
+![image-20250123181604380](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250123181604380.png)
+
+>- 结论:
+   >  - 2n+20 和 2n 随着n 变大，执行曲线无限接近,20 可以忽略
+>  - 3n+10 和 3n 随着n变大，执行曲线无限接近,10 可以忽略
+
+举例说明：忽略系数
+
+![image-20250123181920112](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250123181920112.png)
+
+>- 结论：
+   >  - 随着n值变大，5n^2+7n 和 3n^2+2n，执行曲线重合,说明 这种情况下,5和3可以忽略
+>  - 而n^3+5n和 6n^3+4n ，执行曲线分离，说明多少次方式关键
+
+#### 3.3时间复杂度
+
+1. 般情况下，算法中的基本操作语句的重复执行次数是问题规模n的某个函数，用 T(n)表示，若有某个辅助函数f(n),使得当n趋近于无穷大时,T(n)/f(n)的极限值为不等于零的常数,则称“(n)是 T(n)的同数量级函数。记作 T(n)O(f(n))，称0(f(n))为算法的渐进时间复杂度，简称时间复杂度。
+2. T(n)不同,但时间复杂度可能相同。 如:T(n)=㎡ +7n+6 与 T(n)=3n'+2n+2 它们的 T(n)不同,但时间复杂度相同,都为 O(㎡)。
+   计算时间复杂度的方法
+
+
+
+**计算时间复杂度的方法:**
+
+1. 用常数1代替运行时间中的所有加法常数T(n)=㎡+7n+6 =>T(n)=㎡ +7n+1
+2. 修改后的运行次数函数中，只保留最高阶项T(n)=㎡+7n+1=>T(n)=n
+3. 去除最高阶项的系数 T(n)=㎡ =>T(n)=n => O(㎡)
+
+#### 3.4常见的时间复杂度
+
+**常见的时间复杂度量级**
+
+常数阶O(1)
+对数阶O(log2N)
+线性阶O(n)
+线性对数阶O(nlog2N)
+平方阶O(n^2)
+立方阶O(n^3)
+K次方阶O(n^k)
+指数阶(2^n)
+
+**常见的时间复杂度对应的图**：![image-20250123183305188](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250123183305188.png)
+
+1. 常见的算法时间复杂度由小到大依次为:0(1)<0(log2n)<0()<0(nlog2n)<0 (n2)<0(n3)< 0(nk)<O(2n)，随着问题规模n的不断增大，上述时间复杂度不断增大，算法的执行效率越低
+2. 从图中可见，我们应该尽可能避免使用指数阶的算法
+
+**常数阶O(1)**
+
+~~~java
+int i = 1;
+int j = 2;
+++i;
+j++;
+int m = i + j;
+~~~
+
+> 上述代码在执行的时候，它消耗的时候并不随着某个变量的增长而增长，那么无论这类代码有多长，即使有几十万行，都可以用O(1)来表示它的时间复杂度。
+
+**线性阶O(n)**
+
+~~~java
+for(i=1; i<=n; ++i)
+{
+   j = i;
+   j++;
+}
+~~~
+
+>这段代码，for循环里面的代码会执行n遍，因此它消耗的时间是随着n的变化而变化的，因此这类代码都可以用O(n)来表示它的时间复杂度。
+
+**对数阶O(log2N)**
+
+线性对数阶O(nlogN) 其实非常容易理解，将时间复杂度为O(logn)的代码循环N遍的话，那么它的时间复杂度就是 n * O(logN)，也就是了O(nlogN)。
+
+~~~java
+int i = 1;
+while(i<n)
+{
+    i = i * 2;
+}
+~~~
+
+>从上面代码可以看到，在while循环里面，每次都将 i 乘以 2，乘完之后，i 距离 n 就越来越近了。我们试着求解一下，假设循环x次之后，i 就大于 2 了，此时这个循环就退出了，也就是说 2 的 x 次方等于 n，那么 x = log2^n
+>也就是说当循环 log2^n 次以后，这个代码就结束了。因此这个代码的时间复杂度为：**O(log2n)**
+
+**线性对数阶O(nlog2N)**
+
+线性对数阶O(nlog2N) 其实非常容易理解，将时间复杂度为O(log2n)的代码循环N遍的话，那么它的时间复杂度就是 n * O(log2N)，也就是了O(nlog2N)。
+
+~~~java
+for(m=1; m<n; m++)
+{
+    i = 1;
+    while(i<n)
+    {
+        i = i * 2;
+    }
+}
+~~~
+
+**平方阶O(n2)**
+
+平方阶O(n²) 就更容易理解了，如果把 O(n) 的代码再嵌套循环一遍，它的时间复杂度就是 O(n²) 了。
+
+~~~java
+for(x=1; i<=n; x++)
+{
+   for(i=1; i<=n; i++)
+    {
+       j = i;
+       j++;
+    }
+}
+~~~
+
+**立方阶O(n³)、K次方阶O(n^k)**
+
+参考上面的O(n²) 去理解就好了，O(n³)相当于三层n循环，其它的类似。
+
+除此之外，其实还有 、均摊时间复杂度、最坏时间复杂度、最好时间复杂度 的分析方法，有点复杂，这里就不展开了。
+
+3.5平均时间复杂度和最坏时间复杂度
+
+1. 平均时间复杂度是指所有可能的输入实例均以等概率出现的情况下该算法的运行时间。
+2. 最坏情况下的时间复杂度称最坏时间复杂度。一般讨论的时间复杂度均是最坏情况下的时间复杂度。这样做的原因是:最坏情况下的时间复杂度是算法在任何输入实例上运行时间的界限，这就保证了算法的运行时间不会比最坏情况更长。
+3. 平均时间复杂度和最坏时间复杂度是否一致，和算法有关
+
+| 排序算法     | 平均时间复杂度 | 最好情况   | 最坏情况   | 空间复杂度 | 稳定性 | 适用场景                             |
+| :----------- | :------------- | :--------- | :--------- | :--------- | :----- | :----------------------------------- |
+| **快速排序** | O(n log n)     | O(n log n) | O(n²)      | O(log n)   | 不稳定 | 通用排序，性能优秀，适合大规模数据   |
+| **归并排序** | O(n log n)     | O(n log n) | O(n log n) | O(n)       | 稳定   | 需要稳定排序或外部排序（如文件排序） |
+| **堆排序**   | O(n log n)     | O(n log n) | O(n log n) | O(1)       | 不稳定 | 适合内存受限的场景                   |
+| **希尔排序** | O(n log² n)    | O(n log n) | O(n²)      | O(1)       | 不稳定 | 中等规模数据，比插入排序更快         |
+| **插入排序** | O(n²)          | O(n)       | O(n²)      | O(1)       | 稳定   | 小规模数据或基本有序的数据           |
+| **冒泡排序** | O(n²)          | O(n)       | O(n²)      | O(1)       | 稳定   | 教学用途，实际应用较少               |
+| **选择排序** | O(n²)          | O(n²)      | O(n²)      | O(1)       | 不稳定 | 教学用途，实际应用较少               |
+
+### 4.算法的空间复杂度简介
+
+#### 4.1基本介绍
+
+- 类似于时间复杂度的讨论，一个算法的空间复杂度(Space Complexity)定义为该算法所耗费的存储空间，它也是问题规模n的函数。
+- 空间复杂度(Space Complexity)是对一个算法在运行过程中临时占用存储空间大小的量度。有的算法需要占用的临时工作单元数与解决问题的规模n有关，它随着n的增大而增大，当n较大时，将占用较多的存储单元，例如快速排序和归并排序算法就属于这种情况
+- 在做算法分析时，主要讨论的是时间复杂度。从用户使用体验上看，更看重的程序执行的速度。一些缓存产品(redis.memcache)和算法(基数排序)本质就是用空间换时间.
+
+### 5. 冒泡排序---Bubble Sort
+
+#### 5.1 基本介绍
+
+冒泡排序(Bubble Soring)的基本思想是:通过对待排序序列从前向后(从下标较小的元素开始),依次比较相邻元素的值，若发现逆序则交换，使值较大的元素逐渐从前移向后部，就象水底下的气泡一样逐渐向上冒。
+
+因为排序的过程中，各元素不断接近自己的位置，如果一趟比较下来没有进行过交换，就说明序列有序，因此要在排序过程中设置一个标志 fag判断元素是否进行过交换。从而减少不必要的比较。(这里说的优化，可以在冒泡排1序写好后，在进行)
+
+![image-20250123212700993](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250123212700993.png)
+
+**代码实现：**
+
+~~~java
+package com.wwy.sort;
+
+import java.util.Arrays;
+
+public class BubbleSort {
+    public static void main(String[] args) {
+        /**
+         * 冒泡排序
+         */
+//        int[] arr = {3, -1, 5, -2, 8, 0};
+        long start = System.currentTimeMillis();
+        int[] arr = randomNum(80000);
+        int[] sort = bubbleSort(arr);
+
+        System.out.println(Arrays.toString(sort));
+        System.out.println(System.currentTimeMillis()-start);
+    }
+
+    private static int[] randomNum(int size) {
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = (int) (Math.random() * 800000);
+        }
+        return arr;
+    }
+
+    private static int[] bubbleSort(int[] arr) {
+        int temp = 0;
+        boolean flag = false;
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = 1; j <= arr.length - i; j++) {
+                if (arr[j - 1] > arr[j]) {
+                    flag = true;
+                    temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
+                }
+            }
+            if (!flag) {
+                break;
+            } else {
+                flag = false;
+            }
+        }
+        return arr;
+    }
+}
+
+~~~
+
+### 6.选择排序---Select Sort
+
+#### 6.1 基本介绍
+
+选择式排序也属于内部排序法，是从欲排序的数据中，按指定的规则选出某一元素，再依规定交换位置后达到排序的目的。
+
+**选择排序思想:**
+
+选择排序(select sorting)也是一种简单的排序方法。它的基本思想是:第-次从arr[0]~arr[n-1]中选取最小值，与arr[0]交换，第二次从arr[1]~arr[n-1]中选取最小值，与arr[1]交换，第三次从arr[2]~arr[n-1]中选取最小值，与arr[2]交换，…，第i次从arr[i-1]~arr[n-1]中选取最小值，与arr[i-1]交换，…，第n-1次从arr[n-2]~arr[n-1]中选取最小值，与arr[n-2]交换，总共通过n-1次，得到一个按排序码从小到大排列的有序序列。
+
+**选择排序思路分析图：**
+
+![image-20250124150234729](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250124150234729.png)
+
+**选择排序思路图解：**
+
+![image-20250124150332842](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250124150332842.png)
+
+**代码实现：**
+
+~~~java
+package com.wwy.sort;
+
+import java.util.Arrays;
+
+public class SelectSort {
+    public static void main(String[] args) {
+        int[] arr = {3, 5, 1, 6,-1};
+        int[] sort = selectSort(arr);
+        System.out.println(Arrays.toString(sort));
+
+        
+    }
+    private static int[] selectSort(int[] arr) {
+        for (int i = 0; i < arr.length-1; i++) {
+            int minIndex = i;//假定最小值为第一个下标为0，后面依次加1
+            int min = arr[minIndex];//最小值
+            for (int j = i + 1; j < arr.length; j++) {
+                if (min > arr[j]) {
+                    min = arr[j];
+                    minIndex = j;
+                }
+            }
+            if (minIndex != i) {
+                arr[minIndex] = arr[i];
+                arr[i] = min;
+            }
+        }
+        return arr;
+    }
+    private static int[] randomNum(int size) {
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = (int) (Math.random() * 800000);
+        }
+        return arr;
+    }
+}
+
+~~~
+
+### 7.插入排序---Insert Sort
+
+#### 7.1 基本介绍
+
+插入式排序属于内部排序法，是对于欲排序的元素以插入的方式找寻该元素的适当位置，以达到排序的目的。插入排序法思想:
+
+插入排序(Insertion Sorting)的基本思想是:把n个待排序的元素看成为一个有序表和一个无序表，开始时有序表中只包含一个元素，无序表中包含有 n-1个元素，排序过程中每次从无序表中取出第一个元素，把它的排序码依次与有序表元素的排序码进行比较，将它插入到有序表中的适当位置，使之成为新的有序表。
+
+![image-20250124150849638](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250124150849638.png)
+
+**代码实现：**
+
+~~~java
+package com.wwy.sort;
+
+import java.util.Arrays;
+
+public class InsertSort {
+    public static void main(String[] args) {
+//        int[] arr = {5, 11, 3, 9};
+//        insertSort(arr);
+//        System.out.println(Arrays.toString(arr));
+        long start = System.currentTimeMillis();
+        int[] arr = randomNum(100000);
+        insertSort(arr);
+
+        System.out.println(Arrays.toString(arr));
+        System.out.println(System.currentTimeMillis()-start);
+    }
+
+    /**
+     * 插入排序
+     * @param arr 排序的数组
+     */
+    public static void insertSort(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            //设置插入的值
+            int insertVal = arr[i];
+            //设置要插入的位置
+            int insertIndex = i-1;
+            /*
+            给insertVal找到插入的位置
+            说明：
+            1.insertIndex >= 0保证找到插入位置，数组不越界
+            2.arr[insertIndex] > insertVal，判断插入值前面位次的值是否大于插入值
+                如果大于，就将当前位次的值替换到插入位置，再将位次值后移
+             */
+            while (insertIndex >= 0 && arr[insertIndex] > insertVal) {
+                arr[insertIndex + 1] = arr[insertIndex];
+                insertIndex--;
+            }
+            //当退出循环，说明找到了插入位置，insertIndex + 1
+            if(insertIndex+1!=i){
+                arr[insertIndex + 1] = insertVal;
+            }
+        }
+    }
+
+    private static int[] randomNum(int size) {
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = (int) (Math.random() * 800000);
+        }
+        return arr;
+    }
+}
+
+~~~
+
+#### 7.2希尔排序交换法和移位法
+
+希尔排序（Shell Sort）是一种改进的插入排序算法。它通过将待排序的数组元素按一定间隔分组，对每组进行插入排序，随着间隔逐渐减小，最终完成排序。
+
+**核心思想**
+
+希尔排序通过逐步减小间隔，使得数组逐渐趋于有序，最终实现整体排序。
+
+**步骤**
+
+1. **选择间隔序列**：确定一个间隔序列，通常初始间隔为数组长度的一半，之后逐步减半。
+2. **分组排序**：按当前间隔将数组分组，对每组进行插入排序。
+3. **减小间隔**：重复上述步骤，直到间隔为1，完成最后一次插入排序。
+
+**示例**
+
+假设数组为 `[8, 3, 5, 1, 4, 7, 6, 2]`，初始间隔为4：
+
+1. 分组为 `[8, 4]`, `[3, 7]`, `[5, 6]`, `[1, 2]`，排序后为 `[4, 3, 5, 1, 8, 7, 6, 2]`。
+2. 间隔减半为2，分组为 `[4, 5, 8, 6]`, `[3, 1, 7, 2]`，排序后为 `[4, 1, 5, 2, 6, 3, 8, 7]`。
+3. 间隔为1，进行最后一次插入排序，得到 `[1, 2, 3, 4, 5, 6, 7, 8]`。
+
+**代码实现：**
+
+~~~java
+package com.wwy.sort;
+
+import java.util.Arrays;
+
+public class ShellSort {
+    public static void main(String[] args) {
+
+        long start = System.currentTimeMillis();
+
+
+        int[] arr = randomNum(100000);
+//        int[] arr={3,5,1,-1,9,6,4651,99,-5};
+        shellSort2(arr);
+        System.out.println(Arrays.toString(arr));
+
+        System.out.println(System.currentTimeMillis() - start);
+
+    }
+
+    /**
+     * 希尔排序交换法
+     *
+     * @param arr
+     */
+    public static void shellSort1(int[] arr) {
+        int temp = 0;
+        //设置gap为步长，将数组分组，每次除以2
+        for (int gap = arr.length / 2; gap > 0; gap /= 2) {
+            //对每一组进行排序
+            for (int i = gap; i < arr.length; i++) {
+                //比较一组数据的第一个和加上步长的第二个数据，如果大于就交换，小于就比较下一组
+                for (int j = i - gap; j >= 0; j -= gap) {
+                    if (arr[j] > arr[j + gap]) {
+                        temp = arr[j + gap];
+                        arr[j + gap] = arr[j];
+                        arr[j] = temp;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 希尔排序移位法
+     */
+    public static void shellSort2(int[] arr) {
+        //设置分组以及步长
+        for (int gap = arr.length; gap > 0; gap /= 2) {
+            for (int i = gap; i < arr.length; i++) {
+                int temp = arr[i];
+                int j;
+                // 对当前元素进行插入排序
+                for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
+                    arr[j] = arr[j - gap];
+                }
+                // 将 temp 插入到正确的位置
+                arr[j] = temp;
+            }
+        }
+    }
+
+    private static int[] randomNum(int size) {
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = (int) (Math.random() * 800000);
+        }
+        return arr;
+    }
+}
+~~~
+
+### 8. 快速排序---Quick Sort
+
+#### 8.1基本介绍
+
+快速排序算法简单地说就是找一个基准数，比基准数大的数就放在基准数右边，比基准数小的就放在基准数左边，然后分别对基准数左边的序列后右边的序列进行前面的步骤，直到分出来的序列长度为一。
+
+而想要实现上面的步骤需要提取三个关键点，**基准数，队首索引，队尾索引**。为了方便，我们每次都可以以序列**最左边**的数作为基准数，然后队首索引和队尾索引一开始分别是序列开头位置和序列结束位置，我们可以拿队尾元素与基准数比较，比基准数大那对尾索引就向前移动，比基准数小就将这个元素插入到队首位置，之后队首索引向后移动，然后下一次比较就拿队首元素与基准数相比较了，直到找到比基准数大的数，将元素插入到队尾索引位置之后再将队尾元素向前移，一次类推，直到队首索引与队尾索引相等，就将基准数插入到队尾与队首索引相等的这个位置，这个序列内部的比较和插入就完成了，然后开始子序列的比较和插入
+
+#### 8.2 实现方法
+
+方法其实很简单：分别从初始序列“6 1 2 7 9 3 4 5 10 8”两端开始“探测”。先从**右**往**左**找一个小于6的数，再从**左**往**右**找一个大于6的数，然后交换他们。这里可以用两个变量l(left)和r(right)，分别指向序列最左边和最右边。我们为这两个变量起个好听的名字“哨兵l”和“哨兵r”。刚开始的时候让哨兵l指向序列的最左边（即l=1），arr[l]=6。让哨兵r指向序列的最右边（即r=9）arr[r]=8，指向数字。
+
+![image-20250124224710639](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250124224710639.png)
+
+首先哨兵l开始出动。因为此处设置的基准数是最左边的数，所以需要让哨兵r先出动，这一点非常重要（请自己想一想为什么）。哨兵r一步一步地向左挪动（即r–-），直到找到一个小于6的数停下来。接下来哨兵l再一步一步向右挪动（即l++），直到找到一个数大于6的数停下来。最后哨兵l停在了数字5面前，哨兵r停在了数字7面前。
+
+![image-20250124224632019](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250124224632019.png)
+
+![image-20250124224739925](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250124224739925.png)
+
+现在交换哨兵l和哨兵r所指向的元素的值。交换之后的序列如下：
+
+> 6 1 2 **5** 9 3 4 **7** 10 8
+
+![image-20250124224948501](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250124224948501.png)
+
+![image-20250124225006405](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250124225006405.png)
+
+到此，第一次交换结束。接下来开始哨兵r继续向左挪动（再友情提醒，每次必须是哨兵r先出发）。他发现了4（比基准数6要小，满足要求）之后停了下来。哨兵l也继续向右挪动的，他发现了9（比基准数6要大，满足要求）之后停了下来。此时再次进行交换，交换之后的序列如下
+
+> 6 1 2 5 **4** 3 **9** 7 10 8
+
+第二次交换结束，“探测”继续。哨兵r继续向左挪动，他发现了3（比基准数6要小，满足要求）之后又停了下来。哨兵继续向右移动，糟啦！此时哨兵l和哨兵r相遇了，哨兵l和哨兵r都走到3面前。说明此时“探测”结束。我们将基准数6和3进行交换。交换之后的序列如下：
+
+> **3** 1 2 5 4 **6** 9 7 10 8
+
+![image-20250124225234428](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250124225234428.png)
+
+![image-20250124225248885](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250124225248885.png)
+
+![image-20250124225302716](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250124225302716.png)
+
+到此第一轮“探测”真正结束。此时以基准数6为分界点，6左边的数都小于等于6，6右边的数都大于等于6。回顾一下刚才的过程，其实哨兵j的使命就是要找小于基准数的数，而哨兵i的使命就是要找大于基准数的数，直到i和j碰头为止。
+
+OK，解释完毕。现在基准数6已经归位，它正好处在序列的第6位。此时我们已经将原来的序列，以6为分界点拆分成了两个序列，左边的序列是“3 1 2 5 4”，右边的序列是“9 7 10 8”。接下来还需要分别处理这两个序列。因为6左边和右边的序列目前都还是很混乱的。不过不要紧，我们已经掌握了方法，接下来只要模拟刚才的方法分别处理6左边和右边的序列即可。现在先来处理6左边的序列现吧。
+
+左边的序列是“3 1 2 5 4”。请将这个序列以3为基准数进行调整，使得3左边的数都小于等于3，3右边的数都大于等于3。好了开始动笔吧
+
+如果你模拟的没有错，调整完毕之后的序列的顺序应该是：
+
+2 1 **3** 5 4
+
+OK，现在3已经归位。接下来需要处理3左边的序列“2 1”和右边的序列“5 4”。对序列“2 1”以2为基准数进行调整，处理完毕之后的序列为“1 2”，到此2已经归位。序列“1”只有一个数，也不需要进行任何处理。至此我们对序列“2 1”已全部处理完毕，得到序列是“1 2”。序列“5 4”的处理也仿照此方法，最后得到的序列如下：
+
+1 2 3 4 5 6 9 7 10 8
+
+对于序列“9 7 10 8”也模拟刚才的过程，直到不可拆分出新的子序列为止。最终将会得到这样的序列，如下
+
+1 2 3 4 5 6 7 8 9 10
+
+到此，排序完全结束。细心的同学可能已经发现，快速排序的每一轮处理其实就是将这一轮的基准数归位，直到所有的数都归位为止，排序就结束了。下面上个霸气的图来描述下整个算法的处理过程。
+
+![image-20250124225408960](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250124225408960.png)
+
+这是为什么呢？
+
+快速排序之所比较快，因为相比冒泡排序，每次交换是跳跃式的。每次排序的时候设置一个基准点，将小于等于基准点的数全部放到基准点的左边，将大于等于基准点的数全部放到基准点的右边。这样在每次交换的时候就不会像冒泡排序一样每次只能在相邻的数之间进行交换，交换的距离就大的多了。因此总的比较和交换次数就少了，速度自然就提高了。当然在最坏的情况下，仍可能是相邻的两个数进行了交换。因此快速排序的最差时间复杂度和冒泡排序是一样的都是O(N2)，它的平均时间复杂度为O(NlogN)。
+
+##### 8.2.1快速排序（交换法）
+
+~~~java
+public class QuickSort {
+    public static void quickSort(int[] arr,int low,int high){
+        int i,j,temp,t;
+        if(low>high){
+            return;
+        }
+        i=low;
+        j=high;
+        //temp就是基准位
+        temp = arr[low];
+ 
+        while (i<j) {
+            //先看右边，依次往左递减
+            while (temp<=arr[j]&&i<j) {
+                j--;
+            }
+            //再看左边，依次往右递增
+            while (temp>=arr[i]&&i<j) {
+                i++;
+            }
+            //如果满足条件则交换
+            if (i<j) {
+                t = arr[j];
+                arr[j] = arr[i];
+                arr[i] = t;
+            }
+        }
+        //最后将基准为与i和j相等位置的数字交换
+         arr[low] = arr[i];
+         arr[i] = temp;
+        //递归调用左半数组
+        quickSort(arr, low, j-1);
+        //递归调用右半数组
+        quickSort(arr, j+1, high);
+    }
+ 
+    public static void main(String[] args){
+        int[] arr = {10,7,2,4,7,62,3,4,2,1,8,9,19};
+        quickSort(arr, 0, arr.length-1);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
+    }
+}
+~~~
+
+##### 8.2.2 快速排序（填坑法）
+
+~~~java
+package com.wwy.sort;
+
+import java.util.Random;
+
+public class QuickSort {
+    public static void main(String[] args) {
+        int[] arr = {3, 9, 7, 5, 1,-5494,-5454,222,112,1545,-44,11,1235,88,-48894,-1};
+        sort(arr, 0, arr.length - 1);
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        // 输出：1 3 5 6 8 9 
+    }
+
+    public static void sort(int[] arr, int left, int right) {
+        if (right <= left) return;
+        //选择最左侧数为基准数
+        int pivot = arr[left];
+
+        int begin = left, end = right;
+        while (left < right) {
+            // 从右向左找第一个小于pivot的元素
+            while (left < right && arr[right] >= pivot) {
+                right--;
+            }
+            arr[left] = arr[right]; // 将找到的小于pivot的值填到左坑
+
+            // 从左向右找第一个大于pivot的元素
+            while (left < right && arr[left] <= pivot) {
+                left++;
+            }
+            arr[right] = arr[left]; // 将找到的大于pivot的值填到右坑
+        }
+        arr[left] = pivot; // 最后将基准值填入中间
+
+        sort(arr, begin, left - 1);
+        sort(arr, left + 1, end);
+    }
+
+}
+~~~
 
