@@ -1,3 +1,5 @@
+
+
 # 数据结构与算法
 
 ## 线性结构和非线性结构
@@ -2394,5 +2396,367 @@ public class QuickSort {
     }
 
 }
+~~~
+
+### 9. 归并排序---Merge Sort
+
+#### 9.1 基本介绍
+
+归并排序（Merge sort）是建立在归并操作上的一种有效的**[排序算法]**，该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。
+
+**算法思路：**
+
+1. 归并排序算法有两个基本的操作，一个是分，也就是把原数组划分成两个子数组的过程。另一个是治，它将两个有序数组合并成一个更大的有序数组。
+
+2. 将待排序的线性表不断地切分成若干个子表，直到每个子表只包含一个元素，这时，可以认为只包含一个元素的子表是有序表。
+   将子表两两合并，每合并一次，就会产生一个新的且更长的有序表，重复这一步骤，直到最后只剩下一个子表，这个子表就是排好序的线性表。
+
+**图解算法：**
+
+假设我们有一个初始数列为{8, 4, 5, 7, 1, 3, 6, 2}，整个归并排序的过程如下图所示。
+
+![image-20250125151331908](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250125151331908.png)
+
+可以看到这种结构很像一棵完全二叉树，本文的归并排序我们采用递归去实现（也可采用迭代的方式去实现）。**分**阶段可以理解为就是递归拆分子序列的过程，递归深度为log2n。
+
+**合并两个有序数组流程：**
+
+再来看看治阶段，我们需要将两个已经有序的子序列合并成一个有序序列，比如上图中的最后一次合并，要将[4,5,7,8]和[1,2,3,6]两个已经有序的子序列，合并为最终序列[1,2,3,4,5,6,7,8]，来看下实现步骤。
+
+![image-20250125151438134](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250125151438134.png)
+
+**动画展示**
+
+![img](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/1c9517428afa0244546c0e08a8e7c3fe.gif)
+
+**代码实现：**
+
+~~~java
+package com.wwy.sort;
+
+import java.util.Arrays;
+
+public class MergeSort {
+
+    public static void main(String[] args) {
+        int[] arr = {3,5,1,4,8};
+        System.out.println("原始数组: " + Arrays.toString(arr));
+        mergeSort(arr, 0, arr.length - 1);
+        System.out.println("排序后数组: " + Arrays.toString(arr));
+    }
+
+    // 归并排序入口方法
+    public static void mergeSort(int[] arr, int left, int right) {
+        if (left < right) {
+            // 计算中间位置
+            int mid = left + (right - left) / 2;
+
+            // 递归排序左半部分
+            mergeSort(arr, left, mid);
+            // 递归排序右半部分
+            mergeSort(arr, mid + 1, right);
+
+            // 合并已排序的两部分
+            merge(arr, left, mid, right);
+        }
+    }
+
+    // 合并两个子数组
+    private static void merge(int[] arr, int left, int mid, int right) {
+        // 计算左右子数组的长度
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+
+        // 创建临时数组
+        int[] leftArr = new int[n1];
+        int[] rightArr = new int[n2];
+
+        // 拷贝数据到临时数组
+        System.arraycopy(arr, left, leftArr, 0, n1);
+        System.arraycopy(arr, mid + 1, rightArr, 0, n2);
+
+        // 合并临时数组的指针
+        int i = 0, j = 0, k = left;
+
+        // 比较左右子数组元素，合并到原数组
+        while (i < n1 && j < n2) {
+            if (leftArr[i] <= rightArr[j]) {
+                arr[k++] = leftArr[i++];
+            } else {
+                arr[k++] = rightArr[j++];
+            }
+        }
+
+        // 拷贝左数组剩余元素
+        while (i < n1) {
+            arr[k++] = leftArr[i++];
+        }
+
+        // 拷贝右数组剩余元素
+        while (j < n2) {
+            arr[k++] = rightArr[j++];
+        }
+    }
+}
+~~~
+
+### 10. 基数排序---Radix Sort
+
+#### 10.1基本介绍
+
+基数排序(radix sort)属于“分配式排序”(distributionsor)，又称“桶子法”(bucketsort)或 binsort，顾名思义，它是通过键值的各个位的值，将要排序的元素分配至某些“桶”中，达到排序的作用
+
+基数排序法是属于稳定性的排序，基数排序法的是效率高的稳定性排序法
+
+基数排序(Radix Sort)是桶排序的扩展
+
+如下图：
+
+![img](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/d06833c3db7576ded86f65e01da38325.gif)
+
+**代码实现：**
+
+~~~java
+package com.wwy.sort;
+
+import java.util.Arrays;
+import java.util.OptionalInt;
+
+public class RadixSort {
+    public static void main(String[] args) {
+        /**
+         * 桶排序
+         */
+        int[] arr = {546, 412, 15, 7489, 321, 87486, 46, 134, 463};
+        radixSort(arr);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public static void radixSort(int[] arr) {
+        //得到数组最大的位数
+        int max = Arrays.stream(arr).max().getAsInt();
+        int maxLength = (max + "").length();
+
+        /*
+        定义一个二维数组，表示10个桶，每一个桶就是一个一维数组
+        说明：
+            1.二维数组包含10个一维数组
+            2.为了放置在放入数时出现溢出，每一个一维数组（桶）大小定为arr.length
+         */
+        int[][] buckets = new int[10][arr.length];
+        //记录的是某一个桶中的元素个数，根据这个来遍历，bucketElementsCount[0]就是buckets[0][?]
+        int[] bucketElementsCount = new int[10];
+        //针对每个元素的每位进行排序，从个位开始，长度为最大数的位数
+        for (int i = 0, n = 1; i < maxLength; i++, n *= 10) {
+            //将每一个元素的每一位遍历出来，存入桶中
+            for (int j = 0; j < arr.length; j++) {
+                int digitElement = arr[j] / n % 10;//从个位开始
+                //将当前元素存入对应的桶中
+                buckets[digitElement][bucketElementsCount[digitElement]] = arr[j];
+                //将桶内元素数量++
+                bucketElementsCount[digitElement]++;
+            }
+            int index = 0;//原始数组的下标
+            //遍历桶s，按顺序取出元素
+            for (int k = 0; k < buckets.length; k++) {
+                //如果桶中有元素，就按顺序取出元素
+                if (bucketElementsCount[k] != 0) {
+                    //遍历桶内的元素
+                    for (int l = 0; l < bucketElementsCount[k]; l++) {
+                        arr[index] = buckets[k][l];
+                        index++;
+                    }
+                }
+                //将桶取空，要将桶元素的数量清空
+                bucketElementsCount[k] = 0;
+            }
+        }
+
+    }
+}
+~~~
+
+>说明：
+>
+>1. 基数排序是对传统桶排序的扩展，速度很快
+>2. 基数排序是经典的空间换时间的方式，占用内存很大，当对海量数据排序时，容易造成 OutOMemoryError
+>3. 基数排序时稳定的。[注:假定在待排序的记录序列中，存在多个具有相同的关键字的记录，若经过排序，这些3)记录的相对次序保持不变，即在原序列中，[i]=(i]，且i]在r{]之前，而在排序后的序列中，r{]仍在r{j]之前，则称这种排序算法是稳定的;否则称为不稳定的】
+
+
+
+## 查找算法---Search
+
+### 1.查找算法介绍
+
+**常用的查找算法：**
+
+1. 顺序（线性）查找
+2. 二分查找
+3. 插值查找
+4. 斐波那契查找
+
+### 2.线性查找
+
+有一个数列{45，978，31，54，123，54，13}，判断数列中是否包含某一个值，并返回其下标
+
+**代码实现：**略
+
+### 3. 二分查找---binary Search
+
+#### 3.1基本介绍
+
+有一个数列{45，978，31，54，123，54，13}，判断数列中是否包含某一个值，并返回其下标
+
+**图解过程：**
+
+首先看一个数组，需要对这个数组进行操作。需要对33进行查找的操作，那么**target 的值就是33**
+
+![image-20250125204921028](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250125204921028.png)
+
+- 首先，对 left 的值和 right 的值进行初始化，然后计算 middle 的值
+    - `left = 0, right = size - 1`
+    - `middle = (left + (right - left) / 2 )`
+
+![image-20250125205010274](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250125205010274.png)
+
+- 比较 nums[middle] 的值和 target 的值大小关系
+    - `if (nums[middle] > target)`，代表middle向右所有的数字大于`target`
+    - `if (nums[middle] < target)`，代表middle向左所有的数字小于`target`
+    - 既不大于也不小于就是找到了相等的值
+- `nums[middle] = 13 < target = 33，left = middle + 1`
+- 见下图：
+
+![image-20250125205153753](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250125205153753.png)
+
+- 循环条件为 `while (left <= right)`
+- 此时，`left = 6 <= right = 11`，则继续进行循环
+- 当前，`middle = left + ((right - left) / 2)`，计算出 middle 的值
+
+![image-20250125205230568](https://web-wwy.oss-cn-beijing.aliyuncs.com/madkdown/image-20250125205230568.png)
+
+- 计算出 middle 的值后，比较 nums[middle] 和 target 的值，发现：
+    - nums[middle] = 33 == target = 33，**找到目标**
+
+**代码实现：**
+
+~~~java
+package com.wwy.search;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BinarySearch {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5};
+        //        List<Integer> list = binarySearchList(arr, 0, arr.length - 1, 8);
+        //        System.out.println(list);
+        int index = search(arr, 5);
+        System.out.println(index);
+    }
+
+    /**
+     * 二分查找入口
+     *
+     * @param arr 要查找的数组
+     */
+    public static int search(int[] arr, int findVal) {
+        int left = 0;
+        int right = arr.length - 1;
+        int index = binarySearch(arr, left, right, findVal);
+        return index;
+    }
+
+    /**
+     *递归实现
+     * @param arr     要查找的数组
+     * @param left    左边的下标
+     * @param right   右边的下标
+     * @param findVal 要查找的数
+     * @return 查找数的下标
+     */
+    public static int binarySearch(int[] arr, int left, int right, int findVal) {
+        //如果右边的下标大于左边的下标，结束递归
+        if (left > right) {
+            return -1;
+        }
+        //中间索引
+        int mid = (left + right) / 2;
+        //如果查找数大于中间数
+        if (findVal > arr[mid]) {
+            //开始向右递归查找
+            return binarySearch(arr, mid + 1, right, findVal);
+            //如果查找数小于中间数
+        } else if (findVal < arr[mid]) {
+            //开始向左递归查找
+            return binarySearch(arr, left, mid - 1, findVal);
+        } else {
+            return mid;
+        }
+    }
+
+    /**
+     * 循环实现
+     * @param nums
+     * @param size
+     * @param target
+     * @return
+     */
+    public  static int search(int nums[], int size, int target) //nums是数组，size是数组的大小，target是需要查找的值
+    {
+        int left = 0;
+        int right = size - 1;    // 定义了target在左闭右闭的区间内，[left, right]
+        while (left <= right) {    //当left == right时，区间[left, right]仍然有效
+            int middle = left + ((right - left) / 2);//等同于 (left + right) / 2，防止溢出
+            if (nums[middle] > target) {
+                right = middle - 1;    //target在左区间，所以[left, middle - 1]
+            } else if (nums[middle] < target) {
+                left = middle + 1;    //target在右区间，所以[middle + 1, right]
+            } else {    //既不在左边，也不在右边，那就是找到答案了
+                return middle;
+            }
+        }
+        //没有找到目标值
+        return -1;
+    }
+
+    /**
+     * 查数据的同时查询是否有多个值，一起返回到集合
+     *
+     * @param arr
+     * @param left
+     * @param right
+     * @param findVal
+     * @return
+     */
+    public static List<Integer> binarySearchList(int[] arr, int left, int right, int findVal) {
+        //如果右边的下标大于左边的下标，结束递归
+        if (left > right) {
+            return new ArrayList<>();
+        }
+        //中间索引
+        int mid = (left + right) / 2;
+        if (findVal > arr[mid]) {
+            return binarySearchList(arr, mid + 1, right, findVal);
+        } else if (findVal < arr[mid]) {
+            return binarySearchList(arr, left, mid - 1, findVal);
+        } else {
+            List<Integer> list = new ArrayList<>();
+            int leftIndex = mid - 1;
+            while (leftIndex > 0 && arr[leftIndex] == findVal) {
+                list.add(leftIndex);
+                leftIndex--;
+            }
+            int rightIndex = mid + 1;
+            while (rightIndex < arr.length - 1 && arr[rightIndex] == findVal) {
+                list.add(rightIndex);
+                rightIndex++;
+            }
+            return list;
+        }
+    }
+
+
+}
+
 ~~~
 
